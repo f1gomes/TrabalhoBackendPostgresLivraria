@@ -14,9 +14,12 @@ server.get ('/', async function (request, response) {
 
 server.post('/', async function(request,response){
 
-    const nome = request.body.nome;//JSON
+    //const {titulo, autor, genero, quantidade} = request.body;
+    const titulo = request.body.titulo;
+    const autor = request.body.autor;
+    const genero = request.body.genero;
     const quantidade = request.body.quantidade;
-    const result = await database.create(nome,quantidade);
+    const result = await database.create (titulo, autor, genero, quantidade);
     response.status(204).send();
 })
 

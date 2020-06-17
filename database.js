@@ -7,23 +7,25 @@
  // 3 fechar a conexao 
  // devendo ser executado o mais rapido possivel
  const pool = new Pool({
-     user:'ylqbcogmfeartx',
-     password:'5534a26e8029c04da4afb54ca5db43a969df809cc9baac11b71ec4d6c8d13886',
-     host:'ec2-54-86-170-8.compute-1.amazonaws.com',
-     database:'db82vqff9rkve6',
+     user:'cgguezmqtqqjmx',
+     password:'f6ab53e4eba189b24f3cf8d439921def192d0eff3b8ccab94bd6b94b4e8f2095',
+     host:'ec2-34-197-141-7.compute-1.amazonaws.com',
+     database:'dvqdg6afg4shp',
      port:5432,
      ssl: { rejectUnauthorized: false   }
  });
 
  const sqlCreate = `
-    CREATE TABLE IF NOT EXISTS listacompras
+    CREATE TABLE IF NOT EXISTS listalivros
     (
-        ID serial primary key, 
-        nome varchar(50) not null, 
-        quantidade int not null default 0, 
-        comprado boolean not null default false
+        codigo serial primary key, 
+        titulo varchar(50) not null,
+        autor varchar(50) not null, 
+        genero varchar(50) not null,
+        quantidade int not null default 0
     )
  `;
+ //comprado boolean not null default false
 //comentei o comando de criar tabela, uma vez que as tabelas devem ser criadas uma unica vez.
  /*pool.query(sqlCreate, function(error, result) {
      if (error)
@@ -34,29 +36,29 @@
 
  module.exports = {
 
- async create (nome, quantidade) {
-    const sql = ` INSERT INTO listacompras (nome, quantidade)
-                        VALUES ($1, $2)`;
+ async create (titulo, autor, genero, quantidade) {
+    const sql = ` INSERT INTO listalivros (titulo, autor, genero, quantidade)
+                        VALUES ($1, $2, $3, $4)`;
 
-    const result = await pool.query(sql, [nome, quantidade]);
+    const result = await pool.query(sql, [titulo, autor, genero, quantidade]);
     return result.rowCount;
  },
 
  //create();
 
 async read() {
-    const sql = 'SELECT * FROM listacompras order by nome'
+    const sql = 'SELECT * FROM listalivros order by codigo'
     const result = await pool.query(sql);
     return result.rows;
 },
-async update(id, comprado$){
-    const sql = `UPDATE listacompras SET comprado = $1 WHERE ID = $2`;
-    const result = await pool.query(sql,[comprado,id]);
+async update(codigo, quantidade$){
+    const sql = `UPDATE listalivros SET quantidade = $1 WHERE codigo = $2`;
+    const result = await pool.query(sql,[quantidade,codigo]);
     return result.rowCount;
 },
-async delete(id){
-    const sql = `DELETE FROM listacompras WHERE ID = $1`;
-    result = await pool.query(sql,[id]);
+async delete(codigo){
+    const sql = `DELETE FROM listalivros WHERE codigo = $1`;
+    result = await pool.query(sql,[codigo]);
     return result.rowCount;
 },
 }
