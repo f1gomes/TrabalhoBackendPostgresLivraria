@@ -7,11 +7,13 @@
  // 3 fechar a conexao 
  // devendo ser executado o mais rapido possivel
  const pool = new Pool({
-     user:'cgguezmqtqqjmx',
-     password:'f6ab53e4eba189b24f3cf8d439921def192d0eff3b8ccab94bd6b94b4e8f2095',
-     host:'ec2-34-197-141-7.compute-1.amazonaws.com',
-     database:'dvqdg6afg4shp',
+
+     
+     host:'ec2-35-153-12-59.compute-1.amazonaws.com',
+     database:'d1ruu41kbcmgan',
+     user:'buvyrlaqnsojzp',
      port:5432,
+     password:'ff2a9d3c9849dc5a5d2e379588e7baeb5f3250ab853cdc7663cc2fcd1053ef96',
      ssl: { rejectUnauthorized: false   }
  });
 
