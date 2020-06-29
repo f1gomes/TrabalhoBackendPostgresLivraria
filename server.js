@@ -24,7 +24,7 @@ server.post('/', async function(request,response){
 })
 
 server.put('/:codigo',async function(request, response){
-    const codigo = request.params.id;
+    const codigo = request.params.codigo;
     const quantidade = request.body.quantidade;
     const result = await database.update(codigo, quantidade);
     return response.status(200).send(); 
