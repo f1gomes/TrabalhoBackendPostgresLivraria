@@ -23,16 +23,16 @@ server.post('/', async function(request,response){
     response.status(204).send();
 })
 
-server.put('/:id',async function(request, response){
-    const id = request.params.id;
-    const comprado = request.body.comprado;
-    const result = await database.update(id, comprado);
-    return response.status(200).send();
+server.put('/:codigo',async function(request, response){
+    const codigo = request.params.id;
+    const quantidade = request.body.quantidade;
+    const result = await database.update(codigo, quantidade);
+    return response.status(200).send(); 
 })
 
-server.delete('/:id',async function(request,response){
-    const id = request.params.id;
-    const result = await database.delete(id);
+server.delete('/:codigo',async function(request,response){
+    const codigo = request.params.codigo;
+    const result = await database.delete(codigo);
     return response.status(200).send();
 })
 

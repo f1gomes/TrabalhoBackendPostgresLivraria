@@ -53,8 +53,8 @@ async read() {
     const result = await pool.query(sql);
     return result.rows;
 },
-async update(codigo, quantidade$){
-    const sql = `UPDATE listalivros SET quantidade = $1 WHERE codigo = $2`;
+async update(codigo) {
+    const sql = `UPDATE listalivros SET quantidade = $1 WHERE quantidade' = $2`;
     const result = await pool.query(sql,[quantidade,codigo]);
     return result.rowCount;
 },
